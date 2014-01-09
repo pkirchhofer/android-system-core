@@ -513,6 +513,7 @@ static void load_persistent_properties()
 
             // File must not be accessible to others, be owned by root/root, and
             // not be a hard link to any other file.
+#if 0
             if (((sb.st_mode & (S_IRWXG | S_IRWXO)) != 0)
                     || (sb.st_uid != 0)
                     || (sb.st_gid != 0)
@@ -522,6 +523,7 @@ static void load_persistent_properties()
                 close(fd);
                 continue;
             }
+#endif
 
             length = read(fd, value, sizeof(value) - 1);
             if (length >= 0) {
