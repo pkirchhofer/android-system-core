@@ -199,7 +199,7 @@ static void healthd_mainloop(void) {
     }
 
     if (uevent_fd >= 0) {
-        ev.events = EPOLLIN | EPOLLWAKEUP;
+        ev.events = EPOLLIN;
         ev.data.ptr = (void *)uevent_event;
         if (epoll_ctl(epollfd, EPOLL_CTL_ADD, uevent_fd, &ev) == -1)
             KLOG_ERROR(LOG_TAG,
@@ -210,7 +210,7 @@ static void healthd_mainloop(void) {
     }
 
     if (wakealarm_fd >= 0) {
-        ev.events = EPOLLIN | EPOLLWAKEUP;
+        ev.events = EPOLLIN;
         ev.data.ptr = (void *)wakealarm_event;
         if (epoll_ctl(epollfd, EPOLL_CTL_ADD, wakealarm_fd, &ev) == -1)
             KLOG_ERROR(LOG_TAG,
@@ -221,7 +221,7 @@ static void healthd_mainloop(void) {
    }
 
     if (binder_fd >= 0) {
-        ev.events = EPOLLIN | EPOLLWAKEUP;
+        ev.events = EPOLLIN;
         ev.data.ptr= (void *)binder_event;
         if (epoll_ctl(epollfd, EPOLL_CTL_ADD, binder_fd, &ev) == -1)
             KLOG_ERROR(LOG_TAG,
